@@ -286,7 +286,7 @@ export default function EditNFT() {
           open: true,
           component: WarningEditPopup,
           props: {
-            text: 'The added value input you have chosen is a negative number.\n Mintedgem does not support any refunds on transactions.\n Please update your input settings and try again.',
+            text: 'The added value input you have chosen is a negative number.\n NFT AdvertiseX does not support any refunds on transactions.\n Please update your input settings and try again.',
             buttonText: 'OK',
           },
         }),
@@ -310,7 +310,7 @@ export default function EditNFT() {
           open: true,
           component: WarningEditPopup,
           props: {
-            text: 'The added value input you have chosen is a negative number.\n Mintedgem does not support any refunds on transactions.\n Please update your input settings and try again.',
+            text: 'The added value input you have chosen is a negative number.\n NFT AdvertiseX does not support any refunds on transactions.\n Please update your input settings and try again.',
             buttonText: 'OK',
           },
         }),
@@ -430,7 +430,7 @@ export default function EditNFT() {
     };
   }, [dispatch]);
 
-  useTitle('Edit NFT | Mintedgem');
+  useTitle('Edit NFT | NFT AdvertiseX');
 
   const handleDelete = useCallback(
     (name: string) => {
@@ -615,7 +615,7 @@ export default function EditNFT() {
                 )}
                 {renderPostion}
                 <Typography className={classes.service}>
-                  By CONFIRMING PAYMENT I agree to Mintedgem{' '}
+                  By CONFIRMING PAYMENT I agree to NFT AdvertiseX{' '}
                   <a href="/terms-of-service" target="_blank">
                     <span className={classes.serviceLink}>
                       Terms of Service.

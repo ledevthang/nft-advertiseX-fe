@@ -17,9 +17,7 @@ import {
 } from 'store/selectors';
 import secureStorageUtils from 'utils/secureStorage';
 import {
-  coinbaseWallet,
   injected,
-  walletconnect,
 } from '../../services/wallet/connector';
 import ConnectMethod from './ConnectMethod';
 import { isMobileFn } from 'common/helper';
@@ -101,13 +99,6 @@ const ConnectWalletDialog = () => {
         case 'MetaMask':
           activateInjectedProvider('MetaMask');
           activate(injected);
-          break;
-        case 'WalletConnect':
-          activateInjectedProvider('Coinbase');
-          activate(walletconnect);
-          break;
-        case 'Coinbase':
-          activate(coinbaseWallet);
           break;
       }
     } catch (e) {

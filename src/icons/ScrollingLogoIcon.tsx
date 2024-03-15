@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { IIconProperty } from 'common/type';
 import { SvgIcon } from '@material-ui/core';
 

@@ -43,7 +43,7 @@ export default function PageHomeContainer() {
     handleGetTableCategories();
   }, [handleGetTableCategories]);
 
-  useTitle('Mintedgem - 1001 Squares of NFT');
+  useTitle('NFT AdvertiseX - 1001 Squares of NFT');
 
   return (
     <>

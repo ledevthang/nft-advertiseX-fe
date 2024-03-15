@@ -722,7 +722,7 @@ function Estimate(props: EstimateProps) {
               )}
               {renderPostion}
               <Typography className={classes.service}>
-                By CONFIRMING PAYMENT I agree to Mintedgem{' '}
+                By CONFIRMING PAYMENT I agree to NFT AdvertiseX{' '}
                 <a href="/terms-of-service" target="_blank">
                   <span className={classes.serviceLink}>Terms of Service.</span>
                 </a>

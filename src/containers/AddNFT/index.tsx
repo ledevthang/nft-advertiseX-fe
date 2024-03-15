@@ -195,7 +195,7 @@ const AddNFT = () => {
     return null;
   }, [nftPreview, nftPreviewStatus, classes, estimates, link, parseLinkPress]);
 
-  useTitle('Add NFT | Mintedgem');
+  useTitle('Add NFT | NFT AdvertiseX');
 
   return (
     <>
@@ -230,7 +230,7 @@ const AddNFT = () => {
         ) : (
           <Box className={classes.main}>
             <Box className={classes.content}>
-              <Typography>Add your NFTs from $0.00.</Typography>
+              <Typography>Add your NFTs from $0.</Typography>
               <Typography>
                 Add NFT links from OpenSea, LooksRare, Magic Eden & more. No
                 commissions or hidden fees.

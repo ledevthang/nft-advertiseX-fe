@@ -15,28 +15,3 @@ export const supportedChainIds = [1, 56, 137, 250, 43114];
 export const injected = new InjectedConnector({
   supportedChainIds,
 });
-
-export const walletconnect = new WalletConnectConnector({
-  rpc: {
-    1: RPC_URLS[1],
-    56: RPC_URLS[56],
-    43114: RPC_URLS[43114],
-    137: RPC_URLS[137],
-    250: RPC_URLS[250],
-  },
-  supportedChainIds,
-  bridge: 'https://bridge.walletconnect.org',
-  qrcode: true,
-  // pollingInterval: POLLING_INTERVAL
-});
-
-export const coinbaseWallet = new WalletLinkConnector({
-  url: `https://mainnet.infura.io/v3/d7e7833db7fb43ef94353b152aeab79e`,
-  appName: 'mintedgem-dev',
-  supportedChainIds,
-});
-
-export const fortmatic = new FortmaticConnector({
-  apiKey: 'pk_live_163DC495CD5D7613',
-  chainId: 1,
-});
