@@ -235,8 +235,7 @@ export const getNFTPreviewAction = ({ link }: { link: string }) => {
         return;
       }
       const data = await nftService.GetNFTPreview(params);
-      const metadata = JSON.parse(data.metadata || '{}');
-      if (!SUPPORT_CONTENT_TYPE.includes(metadata.ext)) {
+      if (!SUPPORT_CONTENT_TYPE.includes('png')) {
         dispatch(getNFTPreviewFailureAction());
         dispatch(
           asyncTaskStopAction(taskId, {
@@ -548,12 +547,12 @@ export const getPriceNFTBaseOnDollarSucessAction = (
 export const getPriceNFTBaseOnDollarAction = () => {
   return async (dispatch: DispatchType): Promise<void> => {
     try {
-      const payload = await nftService.getNFTPriceBaseOnDollar();
-      let successPayload: PriceNFTBaseOnDollar = {};
-      payload.forEach((item) => {
-        successPayload[item.symbol] = item.rate;
-      });
-      dispatch(getPriceNFTBaseOnDollarSucessAction(successPayload));
+      // const payload = await nftService.getNFTPriceBaseOnDollar();
+      // let successPayload: PriceNFTBaseOnDollar = {};
+      // payload.forEach((item) => {
+      //   successPayload[item.symbol] = item.rate;
+      // });
+      // dispatch(getPriceNFTBaseOnDollarSucessAction(successPayload));
     } catch (error) {}
   };
 };
@@ -642,12 +641,12 @@ export const getPriceNFTForEditSucessAction = (
 export const getPriceNFTForEditAction = () => {
   return async (dispatch: DispatchType): Promise<void> => {
     try {
-      const payload = await nftService.getNFTPriceBaseOnDollar();
-      let successPayload: PriceNFTBaseOnDollar = {};
-      payload.forEach((item) => {
-        successPayload[item.symbol] = item.rate;
-      });
-      dispatch(getPriceNFTForEditSucessAction(successPayload));
+      // const payload = await nftService.getNFTPriceBaseOnDollar();
+      // let successPayload: PriceNFTBaseOnDollar = {};
+      // payload.forEach((item) => {
+      //   successPayload[item.symbol] = item.rate;
+      // });
+      // dispatch(getPriceNFTForEditSucessAction(successPayload));
     } catch (error) {}
   };
 };

@@ -3,11 +3,6 @@ import { Box, Typography, Tooltip } from '@material-ui/core';
 import TimeBox from './TimeBox';
 import ValueBox from './ValueBox';
 import EthIcon from 'icons/EthIcon';
-import BNBIcon from 'icons/BNBIcon';
-import MaticIcon from 'icons/MaticIcon';
-import FtmIcon from 'icons/FtmIcon';
-import AVAXIcon from 'icons/AVAXIcon';
-import { CurrencyUnitEnum } from 'enums/addNft';
 import { useStyle } from './style';
 import { findPrecision } from 'utils/validateAddNFT';
 import { isNil } from 'lodash';
@@ -29,18 +24,7 @@ function CurrentDateAndValueComponent({ currentInfo, minPrice }: Props) {
   const classes = useStyle();
 
   const coinIcon = useMemo(() => {
-    switch (currentInfo?.unit) {
-      case CurrencyUnitEnum.BNB:
-        return <BNBIcon width={12} height={20} color={'#6F6BC5'} />;
-      case CurrencyUnitEnum.MATIC:
-        return <MaticIcon width={12} height={20} color={'#6F6BC5'} />;
-      case CurrencyUnitEnum.ETH:
-        return <EthIcon width={12} height={20} color={'#6F6BC5'} />;
-      case CurrencyUnitEnum.AVAX:
-        return <AVAXIcon width={12} height={20} color={'#6F6BC5'} />;
-      default:
-        return <FtmIcon width={12} height={20} color={'#6F6BC5'} />;
-    }
+    return <EthIcon width={12} height={20} color={'#6F6BC5'} />;
   }, [currentInfo]);
 
   const coinValue = useMemo(() => {

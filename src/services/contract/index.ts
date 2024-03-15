@@ -1,34 +1,10 @@
 import { CurrencyUnitEnum } from 'enums/addNft';
 export const walletAddress = [
   {
-    id: 250,
-    address: process.env.REACT_APP_FTM_CONTRACT_ADDRESS,
-    name: 'opera',
-    chainName: CurrencyUnitEnum.FTM,
-  },
-  {
-    id: 137,
-    address: process.env.REACT_APP_POLYGON_MUMBAI_CONTRACT_ADDRESS,
-    name: 'polygonMainnet',
-    chainName: CurrencyUnitEnum.MATIC,
-  },
-  {
-    id: 56,
-    address: process.env.REACT_APP_BSC_CONTRACT_ADDRESS,
-    name: 'bsc',
-    chainName: CurrencyUnitEnum.BNB,
-  },
-  {
     id: 1,
     address: process.env.REACT_APP_ETH_CONTRACT_ADDRESS,
     name: 'mainnet',
     chainName: CurrencyUnitEnum.ETH,
-  },
-  {
-    id: 43114,
-    address: process.env.REACT_APP_AVAX_CONTRACT_ADDRESS,
-    name: 'avalanche',
-    chainName: CurrencyUnitEnum.AVAX,
   },
 ];
 
@@ -43,53 +19,7 @@ export const networks = {
       decimals: 18,
     },
     chainId: `0x${Number(1).toString(16)}`,
-  },
-  56: {
-    rpcUrls: [
-      'https://bsc-dataseed1.binance.org',
-    ],
-    nativeCurrency: {
-      name: 'Binance',
-      symbol: 'BNB',
-      decimals: 18,
-    },
-    chainId: `0x${Number(56).toString(16)}`,
-    blockExplorerUrls: ['https://bscscan.com'],
-    chainName: 'Binance Smart Chain',
-  },
-
-  137: {
-    rpcUrls: [
-      'https://polygon-mainnet.g.alchemy.com/v2/VjtzrgjDdzYw2Dn2M3FPVrjtA0jSVN49',
-    ],
-    nativeCurrency: {
-      name: 'MATIC',
-      symbol: 'MATIC',
-      decimals: 18,
-    },
-    chainId: `0x${Number(137).toString(16)}`,
-    chainName: 'Polygon',
-  },
-  250: {
-    chainName: 'Fantom',
-    rpcUrls: ['https://morning-morning-putty.fantom.discover.quiknode.pro/9bf35ce6be611753b351cf7f47b948c308e52b9e/'],
-    nativeCurrency: {
-      name: 'Fantom',
-      symbol: 'FTM',
-      decimals: 18,
-    },
-    chainId: `0x${Number(250).toString(16)}`,
-  },
-  43114: {
-    chainName: 'AVAX',
-    rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-    nativeCurrency: {
-      name: 'AVAX',
-      symbol: 'AVAX',
-      decimals: 18,
-    },
-    chainId: `0x${Number(43114).toString(16)}`,
-  },
+  }
 };
 
 export const abi = [

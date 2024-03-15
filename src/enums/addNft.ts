@@ -1,10 +1,5 @@
 export enum CurrencyUnitEnum {
   ETH = 'ETH',
-  BNB = 'BNB',
-  MATIC = 'MATIC',
-  FTM = 'FTM',
-  EUR = 'EUR',
-  AVAX = 'AVAX',
 }
 
 export enum InputEstimateParamsEnum {

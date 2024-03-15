@@ -4,9 +4,6 @@ import clsx from 'clsx';
 import { convertWeiToEth, roundValue } from 'common/helper';
 import PlaceholderLoader from 'components/common/PlacehoderLoader';
 import { EChain } from 'enums/filter';
-import Polygon from 'icons/Polygon';
-import Solana from 'icons/Solana';
-import VerifiedIcon from 'icons/VerifiedIcon';
 import nftPriceService from 'services/priceNFTs';
 import { MarketPlace, NFT } from 'types/nft';
 import { numberWithCommas } from 'utils/formatNumber';
@@ -75,13 +72,13 @@ const PreviewNFT = ({ data, estimates }: IPreviewNFT) => {
     }
   }, [data.status]);
 
-  const collectionName = useMemo(() => {
-    if (data.marketplace === MarketPlace.MAGICEDEN) {
-      const decode = data.collection.name.split('_');
-      return decode.map((str) => str[0].toUpperCase() + str.slice(1)).join(' ');
-    }
-    return data.collection.name;
-  }, [data.collection.name, data.marketplace]);
+  // const collectionName = useMemo(() => {
+  //   if (data.marketplace === MarketPlace.MAGICEDEN) {
+  //     const decode = data.collection.name.split('_');
+  //     return decode.map((str) => str[0].toUpperCase() + str.slice(1)).join(' ');
+  //   }
+  //   return data.collection.name;
+  // }, [data.collection.name, data.marketplace]);
 
   const metadata = useMemo(() => {
     const metadata = JSON.parse(data.metadata || '{}');
@@ -104,14 +101,7 @@ const PreviewNFT = ({ data, estimates }: IPreviewNFT) => {
   }, [data.chain, data.price]);
 
   const renderChainIcon = useMemo(() => {
-    switch (data.chain) {
-      case EChain.ETHEREUM:
-        return <EthIconNew width={20} height={18} />;
-      case EChain.POLYGON:
-        return <Polygon />;
-      case EChain.SOLANA:
-        return <Solana width={20} height={15} />;
-    }
+    return <EthIconNew width={20} height={18} />;
   }, [data.chain]);
 
   const [defaultCategories, remainingCategories] = useMemo(() => {
@@ -260,12 +250,12 @@ const PreviewNFT = ({ data, estimates }: IPreviewNFT) => {
       <Box className={classes.wrapper}>
         <Box className={classes.collection}>
           <Typography className={clsx(classes.collectionName)}>
-            {collectionName}
-            {data.collection.isVerified && (
+            {/* {collectionName} */}
+            {/* {data.collection.isVerified && (
               <span className={classes.verifyIcon}>
                 <VerifiedIcon color="#6BC96B" />
               </span>
-            )}
+            )} */}
           </Typography>
         </Box>
         <Typography className={clsx(classes.tokenId)}>

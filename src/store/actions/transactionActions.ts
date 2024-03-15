@@ -78,13 +78,13 @@ export const getTransactionVolumeAction = (
       } else {
         startTime = date.subtract(getPastDate(params.time), 'day').toDate();
       }
-      const currency = await nftService.getNFTPriceBaseOnDollar();
-      const coinId = getCoinIdFromCurrencyFilter(params.currency, currency);
-      const data: any = await transactionSvc.GetTransactionVolume({
-        startTime,
-        coinId,
-      });
-      dispatch(getTransactionVolumeSuccessAction(data));
+      // const currency = await nftService.getNFTPriceBaseOnDollar();
+      // const coinId = getCoinIdFromCurrencyFilter(params.currency, currency);
+      // const data: any = await transactionSvc.GetTransactionVolume({
+      //   startTime,
+      //   coinId,
+      // });
+      // dispatch(getTransactionVolumeSuccessAction(data));
       dispatch(asyncTaskStopAction(taskId));
     } catch (error) {
       dispatch(asyncTaskStopAction(taskId, error as ApiError));
