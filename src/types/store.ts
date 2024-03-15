@@ -23,6 +23,7 @@ import {
   DataCategories,
 } from './categories';
 import { ResponseListCategories } from 'types/categories';
+import { TWalletData } from './aurawallet';
 
 export type DispatchType = ThunkDispatch<any, any, AnyAction>;
 
@@ -53,6 +54,7 @@ export type RootStateType = {
   tableCategoriesReducer: CategoriesState;
   blockCategoriesReducer: DataBlockCategoriesBlock;
   listCategoriesReducer: ResponseListCategories;
+  auroWalletReducer: TWalletData
 };
 
 export type ThunkActionType = ThunkAction<

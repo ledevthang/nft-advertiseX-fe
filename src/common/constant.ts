@@ -119,3 +119,14 @@ export const MAX_NOT_DEAD_ZONE_POSITION = 1001;
 export const MIN_PRICE_PER_DAY = 0.1;
 
 export const DISCORD_LINK = 'https://discord.gg/5fSvTXqAuz';
+
+
+export enum LocalStorageKey {
+  'IsConnected' = 'isConnected',
+  'secretRound1Contribution' = 'secretRound1Contribution',
+}
+
+export enum LocalStorageValue {
+  'IsConnectedYes' = 'yes',
+  'IsConnectedNo' = 'no',
+}

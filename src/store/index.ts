@@ -89,6 +89,7 @@ import {
   initialListCategories,
 } from './reducers/listCategoriesReducer';
 import { initialAdminState, adminReducer } from './reducers/adminReducer';
+import { auroWalletReducer, initAuroWalletData } from './reducers/auroWalletReducer';
 
 export const initialRootState: RootStateType = {
   asyncTaskReducer: initialAsyncTaskState,
@@ -117,9 +118,10 @@ export const initialRootState: RootStateType = {
   tableCategoriesReducer: initalCategories,
   blockCategoriesReducer: initialBlockCategoriesState,
   listCategoriesReducer: initialListCategories,
+  auroWalletReducer: initAuroWalletData
 };
 
-export default function configureStore(
+export default function configureStore (
   preloadedState: RootStateType = initialRootState,
 ) {
   const middlewares = [thunk];
@@ -158,6 +160,7 @@ export default function configureStore(
     tableCategoriesReducer,
     blockCategoriesReducer,
     listCategoriesReducer,
+    auroWalletReducer
   });
 
   // Reset state after logout

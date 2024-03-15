@@ -123,3 +123,5 @@ export const getSearchAllCategories = (store: IStore) =>
   store.tableCategoriesReducer.searchCategories;
 
 export const getListCategories = (store: IStore) => store.listCategoriesReducer;
+
+export const auroWallet = (store: IStore) => store.auroWalletReducer
