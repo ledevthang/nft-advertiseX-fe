@@ -82,7 +82,7 @@ const UserPage = () => {
     }
   }, [user]);
 
-  useTitle('Profile | Mintedgem');
+  useTitle('Profile | NFT AdvertiseX');
 
   return (
     <>

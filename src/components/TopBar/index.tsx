@@ -19,9 +19,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateAppStateAction } from 'store/actions/appActions';
 import {
-  coinbaseWallet,
   injected,
-  walletconnect,
 } from 'services/wallet/connector';
 import { updateDialogStateAction } from 'store/actions/dialogActions';
 import { getNotificationsAction } from 'store/actions/notificationActions';
@@ -65,8 +63,6 @@ function TopBar(props: ITopBar) {
   const map: any = useMemo(
     () => ({
       MetaMask: injected,
-      WalletConnect: walletconnect,
-      Coinbase: coinbaseWallet,
     }),
     [],
   );

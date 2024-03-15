@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React, { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import {
   Box,
   Button,
@@ -8,24 +8,14 @@ import {
   useTheme,
 } from '@material-ui/core';
 import clsx from 'clsx';
-import AddForMenuIcon from 'icons/AddForMenuIcon';
-import DiscordIcon from 'icons/DiscordIcon';
-import InstagramIcon from 'icons/InstagramIcon';
 import LogoIcon from 'icons/LogoIcon';
-import MenuIcon from 'icons/MenuIcon';
 import ScrollingLogoIcon from 'icons/ScrollingLogoIcon';
-import TwitterIcon from 'icons/TwitterIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { getPriceNFTBaseOnDollarAction } from 'store/actions/nftActions';
 import { updateAppStateAction } from 'store/actions/appActions';
 import { getBlocksCategories, scrollState } from 'store/selectors';
-import secureStorageUtils from 'utils/secureStorage';
-import { SecureStorageEnum } from 'enums/auth';
-import Search from './Search';
 import IconLogoSmall from 'icons/IconLogoSmall';
-import SearchIcon from 'icons/SearchIcon';
-import { DISCORD_LINK } from 'common/constant';
 import { getAllSearchCategoriesAction } from 'store/actions/categoriesActions';
 import { SortEnum } from 'enums/sortEnum';
 import { CategorySortOptions } from 'enums/categories';
@@ -152,7 +142,7 @@ const Menu = (props: IMenu) => {
   const logo = useMemo(() => {
     return isDesktop && isScrolling ? (
       <Box className={classes.logo} onClick={onRedirectToHome}>
-        <ScrollingLogoIcon width={216} height={60} />
+        {/* <ScrollingLogoIcon width={216} height={60} /> */}
       </Box>
     ) : isMobile ? (
       <Box className={clsx(classes.logo, classes.logoMobile)}>

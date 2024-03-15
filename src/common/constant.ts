@@ -70,7 +70,7 @@ export const marketsSupportSoon = [
 ];
 
 export const CATEGORY_LIST: { [key: string]: string } = {
-  nft: 'All items on Mintedgem.',
+  nft: 'All items on NFT AdvertiseX.',
   eth: 'For Ethereum blockchain NFTs.',
   opensea: 'For NFTs listed on OpenSea.',
   verified: 'For verified NFT collections.',

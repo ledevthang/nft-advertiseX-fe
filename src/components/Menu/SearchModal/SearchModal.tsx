@@ -150,17 +150,6 @@ export default function SearchModal(props: SearchModalProps) {
             </Grid>
           </Grid>
           <div className={classes.borderTopIcon}></div>
-          <Box className={classes.icon}>
-            <a href={DISCORD_LINK} target="_blank">
-              <DiscordIcon color="#000000" width={24} height={24} />
-            </a>
-            <a href="https://twitter.com/mintedgem" target="_blank">
-              <TwitterIcon color="#000000" width={24} height={24} />
-            </a>
-            <a href="https://www.instagram.com/mintedgem/" target="_blank">
-              <InstagramIcon color="#000000" width={24} height={24} />
-            </a>
-          </Box>
           <div className={classes.borderBottomIcon}></div>
           {user.user && active && (
             <Grid

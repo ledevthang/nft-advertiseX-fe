@@ -14,7 +14,7 @@ export default function PageHome(props: PageHomeProps) {
   const { allCategories } = props;
   const history = useHistory();
   const ctaField: ICTAComponentProps = {
-    headTitle: "What's Mintedgem?",
+    headTitle: "What's NFT AdvertiseX?",
     subHeadTitle:
       'The front page of /NFT. Learn more in our About page and start selling your NFTs with no hidden fees today.',
     firstTitleButton: 'ABOUT',
