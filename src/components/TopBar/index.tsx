@@ -160,16 +160,16 @@ function TopBar(props: ITopBar) {
   }, [active]);
 
   const updateUserLocal = () => {
-    const accountLocal = JSON.parse(
-      secureStorageUtils.getItem(SecureStorageEnum.ACCOUNT) || '{}',
-    );
-    localStorage.setItem(
-      SecureStorageEnum.ACCOUNT,
-      JSON.stringify({
-        ...accountLocal,
-        account,
-      }),
-    );
+    // const accountLocal = JSON.parse(
+    //   secureStorageUtils.getItem(SecureStorageEnum.ACCOUNT) || '{}',
+    // );
+    // localStorage.setItem(
+    //   SecureStorageEnum.ACCOUNT,
+    //   JSON.stringify({
+    //     ...accountLocal,
+    //     account,
+    //   }),
+    // );
   };
 
   useEffect(() => {

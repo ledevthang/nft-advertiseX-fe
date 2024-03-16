@@ -157,20 +157,20 @@ const ConnectWalletDialog = () => {
 
   useEffect(() => {
     if (!user.user || !active) return;
-    const { market: nMarket } = JSON.parse(
-      secureStorageUtils.getItem(SecureStorageEnum.ACCOUNT) || '{}',
-    );
-    const newMarket = market || nMarket;
-    secureStorageUtils.setItem(
-      SecureStorageEnum.ACCOUNT,
-      JSON.stringify({
-        market: newMarket,
-        blockNumber,
-        account,
-        chainId,
-        isAdmin: user.user.isAdmin,
-      }),
-    );
+    // const { market: nMarket } = JSON.parse(
+    //   secureStorageUtils.getItem(SecureStorageEnum.ACCOUNT) || '{}',
+    // );
+    // const newMarket = market || nMarket;
+    // secureStorageUtils.setItem(
+    //   SecureStorageEnum.ACCOUNT,
+    //   JSON.stringify({
+    //     market: newMarket,
+    //     blockNumber,
+    //     account,
+    //     chainId,
+    //     isAdmin: user.user.isAdmin,
+    //   }),
+    // );
     dispatch(
       updateDialogStateAction({
         open: false,
