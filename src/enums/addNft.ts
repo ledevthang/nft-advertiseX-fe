@@ -1,5 +1,6 @@
 export enum CurrencyUnitEnum {
   ETH = 'ETH',
+  EUR = 'EUR',
 }
 
 export enum InputEstimateParamsEnum {

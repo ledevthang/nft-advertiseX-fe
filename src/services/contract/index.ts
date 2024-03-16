@@ -1,18 +1,18 @@
 import { CurrencyUnitEnum } from 'enums/addNft';
 export const walletAddress = [
   {
-    id: 1,
+    id: 11155111,
     address: process.env.REACT_APP_ETH_CONTRACT_ADDRESS,
-    name: 'mainnet',
+    name: 'sepolia',
     chainName: CurrencyUnitEnum.ETH,
-  },
+  }
 ];
 
 
 export const networks = {
   1: {
-    chainName: 'Mainnet',
-    rpcUrls: ['https://mainnet.infura.io/v3/84842078b09946638c03157f83405213'],
+    chainName: 'Sepolia',
+    rpcUrls: ['https://eth-sepolia.public.blastapi.io'],
     nativeCurrency: {
       name: 'Ethereum',
       symbol: 'ETH',

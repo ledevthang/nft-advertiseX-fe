@@ -11,7 +11,7 @@ async function GetUser(): Promise<UserData | undefined> {
   return AXIOS.get(apiRoutesEnum.USER);
 }
 
-async function LoginUser(body: LoginUserRequest): Promise<LoginResponse> {
+async function LoginUser(body: LoginUserRequest): Promise<any> {
   const { data } = await AXIOS.post(apiRoutesEnum.LOGIN, {
     ...body,
   });

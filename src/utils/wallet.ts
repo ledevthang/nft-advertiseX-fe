@@ -55,7 +55,7 @@ export const switchNetwork = async (
   const targetChainId = wallet?.id || 0;
   await library.provider.request({
     method:
-      targetChainId == 1
+      targetChainId == 11155111
         ? 'wallet_switchEthereumChain'
         : 'wallet_addEthereumChain',
     params: [

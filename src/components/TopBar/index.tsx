@@ -360,6 +360,9 @@ function TopBar(props: ITopBar) {
             <AccountBalanceWallet color="#FFFFFF" />
           </Button>
         )}
+        {/* <Box onClick={onRedirectToUserPage}>
+            <User className={classes.user} account={account || 'B62qiV3AY3uQWUuhp8SidKnTsfrdwKguDFAKEuNMt48cxfyFuPXFzAM'} />
+          </Box> */}
         {history.location.pathname === '/' && (
           <>
             <div className={classes.betweenIcon}></div>
