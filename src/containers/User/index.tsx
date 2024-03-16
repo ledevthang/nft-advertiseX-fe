@@ -31,6 +31,7 @@ const UserPage = () => {
   const classes = useStyles();
   const user = useSelector(getUserState);
   const nfts = useSelector(getNFTs);
+  console.log(nfts);
   const nftPagination = useSelector(getPaginationNFT);
   const theme = useTheme();
   const dispatch = useDispatch();

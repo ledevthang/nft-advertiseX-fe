@@ -57,10 +57,10 @@ const UserNFTs = ({ nfts, nftPagination }: IProps) => {
       {nfts.map((d, index) => (
         <div key={index} className={classes.nftItemContainer}>
           <DetailNFT
-            key={d.id}
+            key={d.tokenId}
             isExpand={false}
             isGrid4x4={true}
-            id={d.id}
+            id={d.tokenId}
             possess
             isDeadzone={Number(d.position) > 1001}
             isProfile

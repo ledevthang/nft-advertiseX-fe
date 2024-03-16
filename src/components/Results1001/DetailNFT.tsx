@@ -72,8 +72,6 @@ function DetailNFT({
   const data: any = useSelector((store) => getNFTById(store, id) || {});
   const [showPoster, setShowPoster] = useState(true);
 
-  console.log(data);
-
   const deadzonePossess = useMemo(() => {
     return possess && Number(data.position || 0) > 1001;
   }, [possess, data.position]);
