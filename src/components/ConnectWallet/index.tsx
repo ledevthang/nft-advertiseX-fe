@@ -1,4 +1,4 @@
-import { Box, Button, makeStyles, Typography } from '@material-ui/core';
+import { Button, makeStyles, Typography, Box } from '@material-ui/core';
 import { useWeb3React } from '@web3-react/core';
 import CommonDialog from 'components/common/CommonDialog';
 // import WarningEditPopup from 'components/Popup/WarningEditPopup';
@@ -16,11 +16,10 @@ import {
   getUserState,
 } from 'store/selectors';
 import secureStorageUtils from 'utils/secureStorage';
-import {
-  injected,
-} from '../../services/wallet/connector';
+import { injected } from '../../services/wallet/connector';
 import ConnectMethod from './ConnectMethod';
 import { isMobileFn } from 'common/helper';
+import useAuroWallet from 'hooks/useAuroWallet';
 
 declare global {
   interface Window {
@@ -31,6 +30,7 @@ declare global {
 
 const ConnectWalletDialog = () => {
   const classes = useStyles();
+  const { connectWallet } = useAuroWallet();
 
   const { account, library, chainId, error, active, activate, deactivate } =
     useWeb3React();
@@ -95,12 +95,13 @@ const ConnectWalletDialog = () => {
     setMarket(name);
     // setIsConnecting(true);
     try {
-      switch (name) {
-        case 'MetaMask':
-          activateInjectedProvider('MetaMask');
-          activate(injected);
-          break;
-      }
+      connectWallet();
+      // switch (name) {
+      //   case 'MetaMask':
+      //     activateInjectedProvider('MetaMask');
+      //     activate(injected);
+      //     break;
+      // }
     } catch (e) {
       // setIsConnecting(false);
     }
@@ -253,17 +254,17 @@ export const activateInjectedProvider = (
 
 const connectMethods = [
   {
-    logoUrl: '/images/metamask-fox.png',
-    name: 'MetaMask',
+    logoUrl: '',
+    name: 'Auro Wallet',
   },
-  {
-    logoUrl: '/images/wallet-connect.png',
-    name: 'WalletConnect',
-  },
-  {
-    logoUrl: '/images/coinbase-wallet.png',
-    name: 'Coinbase',
-  },
+  // {
+  //   logoUrl: '/images/wallet-connect.png',
+  //   name: 'WalletConnect',
+  // },
+  // {
+  //   logoUrl: '/images/coinbase-wallet.png',
+  //   name: 'Coinbase',
+  // },
 ];
 
 const useStyles = makeStyles((theme) => ({
