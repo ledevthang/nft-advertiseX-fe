@@ -61,6 +61,8 @@ import { MiniumPricePerDayResponse } from 'types/miniumPricePerDay';
 import WarningAddNftDialog from 'components/Dialog/WarningAddNftDialog';
 import WarningDialog from 'components/Dialog/WarningDialog';
 import { MAX_NOT_DEAD_ZONE_POSITION, MIN_PRICE_PER_DAY } from 'common/constant';
+import { EChain } from 'enums/filter';
+import { MarketPlace } from 'types/nft';
 
 interface EstimateProps {
   children: ReactElement;
@@ -253,152 +255,198 @@ function Estimate(props: EstimateProps) {
   }, [dispatch]);
 
   const onConfirmPayment = async () => {
-    const { months, days, hours, nftValue, squarePrice } = nftEstimate.params;
-    const categories = nftEstimate.categories;
-    const isInDeadZonePosition = categories.some(
-      (cat) => (cat?.position || 0) > MAX_NOT_DEAD_ZONE_POSITION,
-    );
+    let { months, days, hours, nftValue, squarePrice } = nftEstimate.params;
 
-    const createNFT = async () => {
-      try {
-        if (!isCorrectNetwork) {
-          await switchNetwork(nftAddEstimate, library);
-          return;
-        }
+    // const categories = nftEstimate.categories;
+    // const isInDeadZonePosition = categories.some(
+    //   (cat) => (cat?.position || 0) > MAX_NOT_DEAD_ZONE_POSITION,
+    // );
 
-        const nftPreview = nftAdd;
-        if (!nftPreview) return;
-
-        dispatch(
-          updateDialogStateAction({
-            open: true,
-            component: TextLoadingMessageDialog,
-          }),
-        );
-        let data: any = {};
-        if (!nftPreview.id) {
-          // add new NFT
-          const categoriesOnNft = nftAddEstimate.categories.map(
-            (cat) => cat.name,
-          );
-          data = await nftService.AddNewNFT({
-            tokenId: nftPreview.tokenId,
-            tokenAddress: nftPreview.tokenAddress,
-            chain: nftPreview.chain,
-            marketplace: nftPreview.marketplace,
-            isProcessPayment: true,
-            time: convertTimeLeftToSecond(nftAddEstimate),
-            categoriesOnNft,
-          });
-        } else {
-          await nftService.UpdateNFT(`${nftPreview.id}`, {
-            isProcessPayment: true,
-            time: convertTimeLeftToSecond(nftAddEstimate),
-          });
-        }
-        await processPayment(
-          data.id || nftPreview.id,
-          data.isCloneFromUser || nftPreview.isCloneFromUser,
-        );
-        dispatch(
-          updateDialogStateAction({
-            open: true,
-            component: TextFieldMessageDialog,
-            props: {
-              imageUrl: nftPreview.imageUrl,
-              metadata: nftPreview.metadata,
-              isAdded: true,
-            },
-          }),
-        );
-      } catch (e: any) {
-        console.log(e);
-        if (e.response && e.response.data.key === 'CLONE_LIMIT_EXCEEDS') {
-          dispatch(
-            updateDialogStateAction({
-              open: true,
-              component: TextMessageDialog,
-            }),
-          );
-        } else {
-          dispatch(
-            updateDialogStateAction({
-              open: true,
-              component: TransactionFailedDialog,
-            }),
-          );
-        }
-      }
-    };
-
-    const handleAcceptNotification = () => {
-      dispatch(
-        updateDialogStateAction({
-          open: false,
-        }),
-      );
-      return createNFT();
-    };
-
-    // show notification when square price per day is greater than $0 and less than $0.1
-    if (
-      !isNil(squarePrice) &&
-      0 < squarePrice &&
-      squarePrice < MIN_PRICE_PER_DAY
-    ) {
-      if (!estimateStatus?.processing) {
-        dispatch(
-          updateDialogStateAction({
-            open: true,
-            component: WarningDialog,
-            props: {
-              headerTitle: 'Warning: Square price per day too low',
-              contentTitle:
-                'Choose a square price per day of $0.00 or $0.10 and above.',
-              textCloseButton: 'BACK',
-              textAcceptButton: 'ACCEPT',
-              onClose: handleCloseNotification,
-              onAccept: handleAcceptWarningLowPricePerDay,
-            },
-          }),
-        );
-      }
-      return;
-    }
-
-    // start process create NFT
-    if (
-      Number(minPrice?.value) === 0 &&
-      Number(nftValue) === 0 &&
-      caculateTotalDays(Number(months), Number(days), Number(hours)) > 30
-    ) {
+    try {
       dispatch(
         updateDialogStateAction({
           open: true,
-          component: WarningAddNftDialog,
+          component: TextLoadingMessageDialog,
         }),
       );
-      return;
-    } else if (isInDeadZonePosition) {
+
+      const d = Number(nftEstimate.params.days) || 0;
+      const m = Number(nftEstimate.params.months) || 0;
+      const h = Number(nftEstimate.params.hours) || 0;
+
+      const value = Number(nftEstimate.params.nftValue) || 0;
+
+      const nftPreview = nftAdd!;
+
+      const duration = d * 24 * 3600 + m * 30 * 24 * 3600 + h * 3600;
+
+      // const { id } = await nftService.AddNewNFT({
+      //   chain: EChain.ETHEREUM,
+      //   tokenAddress: nftPreview.tokenAddress,
+      //   tokenId: nftPreview.tokenId,
+      //   marketplace: MarketPlace.OPENSEA,
+      //   duration,
+      // });
+
+      // await nftService.AcitveNft({
+      //   id,
+      //   amount: value,
+      // });
+
       dispatch(
         updateDialogStateAction({
           open: true,
-          component: WarningDialog,
+          component: TextFieldMessageDialog,
           props: {
-            headerTitle: 'Warning: Cannot filter NFT in one or more categories',
-            contentTitle:
-              'Your NFT will not be filtered in each category while after 1001.',
-            textCloseButton: 'BACK',
-            textAcceptButton: 'ACCEPT & CONTINUE',
-            onClose: handleCloseNotification,
-            onAccept: handleAcceptNotification,
+            imageUrl: nftPreview.imageUrl,
+            metadata: nftPreview.metadata,
+            isAdded: true,
           },
         }),
       );
-      return;
-    } else {
-      return createNFT();
+    } catch (error) {
+      dispatch(
+        updateDialogStateAction({
+          open: true,
+          component: TransactionFailedDialog,
+        }),
+      );
     }
+
+    // const createNFT = async () => {
+    //   try {
+    //     if (!isCorrectNetwork) {
+    //       await switchNetwork(nftAddEstimate, library);
+    //       return;
+    //     }
+
+    //     const nftPreview = nftAdd;
+    //     if (!nftPreview) return;
+
+    //     let data: any = {};
+    //     if (!nftPreview.id) {
+    //       // add new NFT
+    //       const categoriesOnNft = nftAddEstimate.categories.map(
+    //         (cat) => cat.name,
+    //       );
+    //       data = await nftService.AddNewNFT({
+    //         tokenId: nftPreview.tokenId,
+    //         tokenAddress: nftPreview.tokenAddress,
+    //         chain: nftPreview.chain,
+    //         marketplace: nftPreview.marketplace,
+    //         isProcessPayment: true,
+    //         time: convertTimeLeftToSecond(nftAddEstimate),
+    //         categoriesOnNft,
+    //       });
+    //     } else {
+    //       await nftService.UpdateNFT(`${nftPreview.id}`, {
+    //         isProcessPayment: true,
+    //         time: convertTimeLeftToSecond(nftAddEstimate),
+    //       });
+    //     }
+    //     await processPayment(
+    //       data.id || nftPreview.id,
+    //       data.isCloneFromUser || nftPreview.isCloneFromUser,
+    //     );
+    //     dispatch(
+    //       updateDialogStateAction({
+    //         open: true,
+    //         component: TextFieldMessageDialog,
+    //         props: {
+    //           imageUrl: nftPreview.imageUrl,
+    //           metadata: nftPreview.metadata,
+    //           isAdded: true,
+    //         },
+    //       }),
+    //     );
+    //   } catch (e: any) {
+    //     console.log(e);
+    //     if (e.response && e.response.data.key === 'CLONE_LIMIT_EXCEEDS') {
+    //       dispatch(
+    //         updateDialogStateAction({
+    //           open: true,
+    //           component: TextMessageDialog,
+    //         }),
+    //       );
+    //     } else {
+    // dispatch(
+    //   updateDialogStateAction({
+    //     open: true,
+    //     component: TransactionFailedDialog,
+    //   }),
+    // );
+    //     }
+    //   }
+    // };
+
+    // const handleAcceptNotification = () => {
+    //   dispatch(
+    //     updateDialogStateAction({
+    //       open: false,
+    //     }),
+    //   );
+    //   return createNFT();
+    // };
+
+    // // show notification when square price per day is greater than $0 and less than $0.1
+    // if (
+    //   !isNil(squarePrice) &&
+    //   0 < squarePrice &&
+    //   squarePrice < MIN_PRICE_PER_DAY
+    // ) {
+    //   if (!estimateStatus?.processing) {
+    //     dispatch(
+    //       updateDialogStateAction({
+    //         open: true,
+    //         component: WarningDialog,
+    //         props: {
+    //           headerTitle: 'Warning: Square price per day too low',
+    //           contentTitle:
+    //             'Choose a square price per day of $0.00 or $0.10 and above.',
+    //           textCloseButton: 'BACK',
+    //           textAcceptButton: 'ACCEPT',
+    //           onClose: handleCloseNotification,
+    //           onAccept: handleAcceptWarningLowPricePerDay,
+    //         },
+    //       }),
+    //     );
+    //   }
+    //   return;
+    // }
+
+    // // start process create NFT
+    // if (
+    //   Number(minPrice?.value) === 0 &&
+    //   Number(nftValue) === 0 &&
+    //   caculateTotalDays(Number(months), Number(days), Number(hours)) > 30
+    // ) {
+    //   dispatch(
+    //     updateDialogStateAction({
+    //       open: true,
+    //       component: WarningAddNftDialog,
+    //     }),
+    //   );
+    //   return;
+    // } else if (isInDeadZonePosition) {
+    //   dispatch(
+    //     updateDialogStateAction({
+    //       open: true,
+    //       component: WarningDialog,
+    //       props: {
+    //         headerTitle: 'Warning: Cannot filter NFT in one or more categories',
+    //         contentTitle:
+    //           'Your NFT will not be filtered in each category while after 1001.',
+    //         textCloseButton: 'BACK',
+    //         textAcceptButton: 'ACCEPT & CONTINUE',
+    //         onClose: handleCloseNotification,
+    //         onAccept: handleAcceptNotification,
+    //       },
+    //     }),
+    //   );
+    //   return;
+    // } else {
+    //   return createNFT();
+    // }
   };
 
   useEffect(() => {
@@ -414,10 +462,26 @@ function Estimate(props: EstimateProps) {
   }, [nftAddEstimate, chainId]);
 
   const pricePerDay = useMemo(() => {
-    if (!isNil(nftEstimate.params.squarePrice)) {
-      return `$${numberWithCommas(nftEstimate.params.squarePrice.toFixed(2))}`;
-    }
-    return '--';
+    // console.log(
+    //   'nftEstimate.params.squarePrice: ',
+    //   nftEstimate.params.squarePrice,
+    // );
+
+    // if (!isNil(nftEstimate.params.squarePrice)) {
+    //   return `$${numberWithCommas(nftEstimate.params.squarePrice.toFixed(2))}`;
+    // }
+
+    const days = Number(nftEstimate.params.days) || 0;
+    const months = Number(nftEstimate.params.months) || 0;
+    const hours = Number(nftEstimate.params.hours) || 0;
+
+    const value = Number(nftEstimate.params.nftValue) || 0;
+
+    const duration = days * 24 * 3600 + months * 30 * 24 * 3600 + hours * 3600;
+
+    const squarePrice = (value / duration) * 3600 * 24 || 0;
+
+    return squarePrice.toFixed(2);
   }, [nftEstimate]);
 
   const estimateInfo = useMemo(() => {
@@ -733,15 +797,12 @@ function Estimate(props: EstimateProps) {
             <Button onClick={setEstimate}>
               <Typography>CANCEL</Typography>
             </Button>
-            <Button
-              disabled={!enableConnectWallet}
-              onClick={user ? onConfirmPayment : openConnectWallet}
-            >
+            <Button onClick={true ? onConfirmPayment : openConnectWallet}>
               <AccountBalanceWallet
                 color={enableConnectWallet ? '#FFFFFF' : 'rgba(0, 0, 0, 0.16)'}
               />
               <Typography>
-                {user && active ? 'CONFIRM PAYMENT' : 'CONNECT WALLET'}
+                {true ? 'CONFIRM PAYMENT' : 'CONNECT WALLET'}
               </Typography>
             </Button>
           </Grid>

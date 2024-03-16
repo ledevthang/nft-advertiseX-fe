@@ -102,17 +102,17 @@ export const nftEstimateReducer = (
         action.payload;
 
       // update position in categories
-      const categories = [...state.categories].map((cat) => {
-        const matchingCat = postionOnCategories.find(
-          (item) => item.name === cat.name,
-        );
-        return matchingCat
-          ? {
-              ...cat,
-              position: matchingCat.position,
-            }
-          : cat;
-      });
+      // const categories = [...state.categories].map((cat) => {
+      //   const matchingCat = postionOnCategories.find(
+      //     (item) => item.name === cat.name,
+      //   );
+      //   return matchingCat
+      //     ? {
+      //         ...cat,
+      //         position: matchingCat.position,
+      //       }
+      //     : cat;
+      // });
 
       const newState = {
         ...state,
@@ -120,51 +120,54 @@ export const nftEstimateReducer = (
           ...state.estimateInfo,
           ...rest,
         },
-        categories,
+        categories: postionOnCategories as any,
+        priceNFT: {
+          ETH: squarePrice || Math.random(),
+        },
       };
 
-      const { months, days, hours, nftUnit } = newState.params;
-      const totalDays = caculateTotalDays(
-        Number(months!),
-        Number(days!),
-        Number(hours!),
-      );
+      // const { months, days, hours, nftUnit } = newState.params;
+      // const totalDays = caculateTotalDays(
+      //   Number(months!),
+      //   Number(days!),
+      //   Number(hours!),
+      // );
 
-      // update avg time
-      newState.estimateInfo.avgTime =
-        avgTime && ((totalDays * 24) / avgTime) * 100;
+      // // update avg time
+      // newState.estimateInfo.avgTime =
+      //   avgTime && ((totalDays * 24) / avgTime) * 100;
 
-      // estimate by price per day
-      if (action.payload.hasOwnProperty('position')) {
-        newState.params.position = position?.toString();
-        if (!isNil(position)) {
-          newState.estimateInfo.percentile =
-            (position / TOTAL_NUMBER_NFT) * 100;
-        }
-      }
+      // // estimate by price per day
+      // if (action.payload.hasOwnProperty('position')) {
+      //   newState.params.position = position?.toString();
+      //   if (!isNil(position)) {
+      //     newState.estimateInfo.percentile =
+      //       (position / TOTAL_NUMBER_NFT) * 100;
+      //   }
+      // }
 
-      // estimate by position
-      if (action.payload.hasOwnProperty('squarePrice')) {
-        const price = newState.priceNFT[nftUnit];
-        newState.params.squarePrice = squarePrice;
-        if (price && !isNil(squarePrice)) {
-          const valueByUSD = squarePrice * totalDays;
-          const valueByCoin = valueByUSD / price;
-          newState.params.nftValue = round(valueByCoin, 7).toString();
-          if (valueByCoin.toString().includes('e')) {
-            const precision = findPrecision(valueByCoin);
-            newState.params.nftValue = valueByCoin.toFixed(precision || 0);
-          }
-        }
+      // // estimate by position
+      // if (action.payload.hasOwnProperty('squarePrice')) {
+      //   const price = newState.priceNFT[nftUnit];
+      //   newState.params.squarePrice = squarePrice;
+      //   if (price && !isNil(squarePrice)) {
+      //     const valueByUSD = squarePrice * totalDays;
+      //     const valueByCoin = valueByUSD / price;
+      //     newState.params.nftValue = round(valueByCoin, 7).toString();
+      //     if (valueByCoin.toString().includes('e')) {
+      //       const precision = findPrecision(valueByCoin);
+      //       newState.params.nftValue = valueByCoin.toFixed(precision || 0);
+      //     }
+      //   }
 
-        const positionInNFTCategory = newState.categories.find(
-          (item) => item.name === 'NFT',
-        )?.position;
-        if (!isNil(positionInNFTCategory)) {
-          newState.estimateInfo.percentile =
-            (Number(positionInNFTCategory) / TOTAL_NUMBER_NFT) * 100;
-        }
-      }
+      //   const positionInNFTCategory = newState.categories.find(
+      //     (item) => item.name === 'NFT',
+      //   )?.position;
+      //   if (!isNil(positionInNFTCategory)) {
+      //     newState.estimateInfo.percentile =
+      //       (Number(positionInNFTCategory) / TOTAL_NUMBER_NFT) * 100;
+      //   }
+      // }
 
       return newState;
     }

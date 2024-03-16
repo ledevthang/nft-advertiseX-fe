@@ -395,90 +395,116 @@ export const getNFTEstimateAction = (params: GetNftEstimateParams) => {
       const state = getState();
       const nftEstimate = state.nftEstimateReducer;
       const isValidateEstimateTime = validateEstimateTime(nftEstimate.params);
-      const lastEditInput = nftEstimate.params.lastEditInput;
+      // const lastEditInput = nftEstimate.params.lastEditInput;
+
       if (!isValidateEstimateTime) return;
 
-      const miniumPrice = await miniumPriceService.getMiniumPricePerDayDebounce(
-        {
-          key: 'miniumPricePerday',
-        },
+      // const miniumPrice = await miniumPriceService.getMiniumPricePerDayDebounce(
+      //   {
+      //     key: 'miniumPricePerday',
+      //   },
+      // );
+
+      const days = Number(nftEstimate.params.days) || 0;
+      const months = Number(nftEstimate.params.months) || 0;
+      const hours = Number(nftEstimate.params.hours) || 0;
+
+      const value = Number(nftEstimate.params.nftValue) || 0;
+
+      const duration =
+        days * 24 * 3600 + months * 30 * 24 * 3600 + hours * 3600;
+
+      const squarePrice = value / duration;
+
+      const { postionOnCategories } = await nftService.getNFTEstimateDebounce({
+        squarePrice: squarePrice,
+      });
+
+      dispatch(
+        getNFTEstimateSuccessRequestAction({
+          avgTime: 0,
+          blockNumber: 1,
+          positionWithinBlock: 1,
+          squarePrice: squarePrice,
+          postionOnCategories,
+        }),
       );
 
-      const { position, squarePrice, nftValue, category } = nftEstimate.params;
-      const listCategory = nftEstimate.categories
-        ?.map((cat) => cat.name)
-        .join(',');
+      // const { position, squarePrice, nftValue, category } = nftEstimate.params;
+      // const listCategory = nftEstimate.categories
+      //   ?.map((cat) => cat.name)
+      //   .join(',');
 
-      const isChangeTime =
-        params.hasOwnProperty(InputEstimateParamsEnum.MONTHS) ||
-        params.hasOwnProperty(InputEstimateParamsEnum.DAYS) ||
-        params.hasOwnProperty(InputEstimateParamsEnum.HOURS);
-      const isChangePosition = params.hasOwnProperty(
-        InputEstimateParamsEnum.POSITION,
-      );
-      const isChangeNftValue = params.hasOwnProperty(
-        InputEstimateParamsEnum.NFT_VALUE,
-      );
-      let paramsService: any = {};
+      // const isChangeTime =
+      //   params.hasOwnProperty(InputEstimateParamsEnum.MONTHS) ||
+      //   params.hasOwnProperty(InputEstimateParamsEnum.DAYS) ||
+      //   params.hasOwnProperty(InputEstimateParamsEnum.HOURS);
+      // const isChangePosition = params.hasOwnProperty(
+      //   InputEstimateParamsEnum.POSITION,
+      // );
+      // const isChangeNftValue = params.hasOwnProperty(
+      //   InputEstimateParamsEnum.NFT_VALUE,
+      // );
+      // let paramsService: any = {};
 
-      // Estimate with free policy (squarePrice is $0)
-      if (
-        Number(miniumPrice.value) === 0 &&
-        parseFloat(nftValue || '') === 0 &&
-        lastEditInput !== InputEstimateParamsEnum.POSITION
-      ) {
-        const payload = await nftService.getNFTEstimateDebounce({
-          squarePrice: 0,
-          categories: listCategory,
-        });
-        dispatch(getNFTEstimateSuccessRequestAction(payload));
-        dispatch(asyncTaskStopAction(taskId));
-        return;
-      }
+      // // Estimate with free policy (squarePrice is $0)
+      // if (
+      //   Number(miniumPrice.value) === 0 &&
+      //   parseFloat(nftValue || '') === 0 &&
+      //   lastEditInput !== InputEstimateParamsEnum.POSITION
+      // ) {
+      //   const payload = await nftService.getNFTEstimateDebounce({
+      //     squarePrice: 0,
+      //     categories: listCategory,
+      //   });
+      //   dispatch(getNFTEstimateSuccessRequestAction(payload));
+      //   dispatch(asyncTaskStopAction(taskId));
+      //   return;
+      // }
 
-      // Estimate not free square price greater than $0.1
-      if (!isNil(position) && (isChangePosition || isChangeTime)) {
-        paramsService = {
-          position,
-        };
-      }
+      // // Estimate not free square price greater than $0.1
+      // if (!isNil(position) && (isChangePosition || isChangeTime)) {
+      //   paramsService = {
+      //     position,
+      //   };
+      // }
 
-      if (!isNil(squarePrice) && (isChangeNftValue || isChangeTime)) {
-        paramsService = {
-          squarePrice,
-        };
-      }
+      // if (!isNil(squarePrice) && (isChangeNftValue || isChangeTime)) {
+      //   paramsService = {
+      //     squarePrice,
+      //   };
+      // }
 
-      if (!isNil(position) && !isNil(squarePrice) && isChangeTime) {
-        if (
-          !lastEditInput ||
-          lastEditInput === InputEstimateParamsEnum.POSITION
-        ) {
-          paramsService = {
-            position,
-          };
-        } else {
-          paramsService = { squarePrice };
-        }
-      }
+      // if (!isNil(position) && !isNil(squarePrice) && isChangeTime) {
+      //   if (
+      //     !lastEditInput ||
+      //     lastEditInput === InputEstimateParamsEnum.POSITION
+      //   ) {
+      //     paramsService = {
+      //       position,
+      //     };
+      //   } else {
+      //     paramsService = { squarePrice };
+      //   }
+      // }
 
-      if (
-        !Number(squarePrice) &&
-        lastEditInput !== InputEstimateParamsEnum.POSITION
-      ) {
-        dispatch(setDefaultPostionEstimateAction());
-        return;
-      }
+      // if (
+      //   !Number(squarePrice) &&
+      //   lastEditInput !== InputEstimateParamsEnum.POSITION
+      // ) {
+      //   dispatch(setDefaultPostionEstimateAction());
+      //   return;
+      // }
 
-      if (!isEmpty(paramsService) && paramsService?.position !== '') {
-        paramsService = {
-          ...paramsService,
-          categories: listCategory,
-          category,
-        };
-        const payload = await nftService.getNFTEstimateDebounce(paramsService);
-        dispatch(getNFTEstimateSuccessRequestAction(payload));
-      }
+      // if (!isEmpty(paramsService) && paramsService?.position !== '') {
+      //   paramsService = {
+      //     ...paramsService,
+      //     categories: listCategory,
+      //     category,
+      //   };
+      //   const payload = await nftService.getNFTEstimateDebounce(paramsService);
+      //   dispatch(getNFTEstimateSuccessRequestAction(payload));
+      // }
 
       dispatch(asyncTaskStopAction(taskId));
     } catch (error) {

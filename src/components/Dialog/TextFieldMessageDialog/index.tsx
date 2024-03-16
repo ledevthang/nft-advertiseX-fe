@@ -36,12 +36,6 @@ export default function TextFieldMessageDialog() {
     [dispatch, history],
   );
 
-  const metadata = useMemo(() => {
-    if (!props) return;
-    const metadata = JSON.parse(props.metadata);
-    return metadata;
-  }, [props]);
-
   return (
     <CommonDialog isOverridden>
       <Box className={clsx(classes.conatiner, 'center-root')}>
@@ -56,34 +50,9 @@ export default function TextFieldMessageDialog() {
             </Button>
           </Box>
           <Typography variant="h2" className={classes.title}>
-            {props.isAdded
-              ? 'You listed your NFT successfully!'
-              : 'You edited your settings successfully!'}
+            You listed your NFT successfully!
           </Typography>
-          {metadata.ext === 'webm' || metadata.ext === 'mp4' ? (
-            <Box className={classes.media}>
-              <video
-                controls
-                preload="auto"
-                loop
-                className={classes.media}
-                playsInline
-              >
-                <source
-                  src={`${props.imageUrl}#t=0.001`}
-                  type={metadata.contentType}
-                />
-              </video>
-            </Box>
-          ) : (
-            <img className={classes.media} src={props.imageUrl} alt="" />
-          )}
-          {props.isAdded && (
-            <Typography variant="body1" className={classes.subtitle}>
-              Track and edit your position in your profile. We’ll notify you
-              when there are updates on your listing.
-            </Typography>
-          )}
+          <img className={classes.media} src={props.imageUrl} alt="" />
         </Box>
         <Box className={clsx(classes.wrapperBtn, 'center-root')}>
           <Button onClick={() => redirectTo('/')}>

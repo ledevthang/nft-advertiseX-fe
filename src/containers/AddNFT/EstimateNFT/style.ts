@@ -269,8 +269,8 @@ export const useStyle = makeStyles((theme) => ({
       fontSize: 18,
       textAlign: 'center',
     },
-    color: ({ priceStatus }: UseStyleProps) =>
-      priceStatus ? '#ED5050' : '#6F6BC5',
+    // color: ({ priceStatus }: UseStyleProps) =>
+    //   priceStatus ? '#ED5050' : '#6F6BC5',
   },
   miniumPrice: {
     color: ({ priceStatus }: UseStyleProps) =>

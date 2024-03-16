@@ -27,7 +27,7 @@ const AXIOS = axios.create({
     Authorization: `Bearer ${accessToken}`,
     'Content-Type': 'application/json',
   },
-  timeout: 60000,
+  timeout: 6_000_000,
 });
 
 AXIOS.interceptors.request.use((config) => {

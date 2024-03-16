@@ -401,6 +401,7 @@ const Results1001 = ({
             </div>
           );
         }
+
         return (
           <div style={getCellStyle(columnIndex, style)}>
             <DetailNFT
@@ -417,7 +418,7 @@ const Results1001 = ({
         );
       } else {
         if (!hasMore)
-          return <div style={getCellStyle(columnIndex, style)}></div>;
+          return <div style={getCellStyle(columnIndex, stynftle)}></div>;
         return (
           <div style={getCellStyle(columnIndex, style)}>
             <NFTSkeleton isGrid4x4={isGrid4x4} />

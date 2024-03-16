@@ -65,6 +65,13 @@ async function AddNewNFT(
   return data;
 }
 
+async function AcitveNft({ amount, id }: { id: number; amount: number }) {
+  return AXIOS.post('/nfts/active', {
+    id,
+    amount,
+  });
+}
+
 async function UpdateNFT(id: string, body: Partial<CreateNFT>): Promise<NFT> {
   const { data } = await AXIOS.patch(`${apiRoutesEnum.GET_DETAIL_NFT}/${id}`, {
     ...body,
@@ -100,4 +107,5 @@ export default {
   UpdateNFT,
   AdminDeleteNFT,
   getNFTEstimateDebounce,
+  AcitveNft,
 };

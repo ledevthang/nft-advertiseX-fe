@@ -74,10 +74,11 @@ export interface CreateNFT {
   tokenAddress: string;
   marketplace: MarketPlace;
   chain: EChain;
+  duration?: number;
   isProcessPayment?: boolean;
   isCloneFromUser?: boolean;
-  time: number;
-  categoriesOnNft: string[];
+  time?: number;
+  categoriesOnNft?: string[];
 }
 
 export interface GetMyNFTRequest extends PaginationRequest {
