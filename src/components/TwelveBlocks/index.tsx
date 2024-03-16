@@ -17,6 +17,7 @@ import {
 import TwelveBlockLoading from './TwelveBlockLoading';
 import { useStyles } from './styles';
 import { useLocation } from 'react-router-dom';
+import { ResBlockCategories } from 'types/categories';
 interface ITwelveBlocks {
   toggleDeadzone: (value?: boolean) => void;
   isDeadzone: boolean;
@@ -157,44 +158,63 @@ const TwelveBlocks = ({ toggleDeadzone, isDeadzone }: ITwelveBlocks) => {
   }, [openScroll]);
 
   const renderBlockComponent = useMemo(() => {
-    if (isFilterByCategory) {
-      if (blockCategories.blockCategories.data.length > 0) {
-        return blockCategories?.blockCategories?.data.map((i) => (
-          <Box
-            key={i.block}
-            className={clsx(classes.container, {
-              [classes.borderActive]: blockSelected === i.block,
-            })}
-            onClick={() => onChangeBlockSelected(i.block)}
-          >
-            {renderBlock(i.imgUrl)}
-          </Box>
-        ));
-      }
+    const data: ResBlockCategories[] = new Array(12).fill(1).map((_, idx) => ({
+      block: idx + 1,
+      imgUrl: `${process.env.REACT_APP_BE_URL}/static/block_${idx + 1}.png`,
+    }));
 
-      return (
-        <TwelveBlockLoading
-          filterCategory={true}
-          className={classes.container}
-        />
-      );
-    }
+    // if (isFilterByCategory) {
+    //   if (blockCategories.blockCategories.data.length > 0) {
+    //     return data.map((i) => (
+    //       <Box
+    //         key={i.block}
+    //         className={clsx(classes.container, {
+    //           [classes.borderActive]: blockSelected === i.block,
+    //         })}
+    //         onClick={() => onChangeBlockSelected(i.block)}
+    //       >
+    //         {renderBlock(i.imgUrl)}
+    //       </Box>
+    //     ));
+    //   }
 
-    if (blocks.length > 0) {
-      return blocks?.map((i, index) => (
-        <Box
-          key={i.id}
-          className={clsx(classes.container, {
-            [classes.borderActive]: blockSelected === i.id,
-          })}
-          onClick={() => onChangeBlockSelected(i.id)}
-        >
-          {renderBlock(i.imageUrl)}
-        </Box>
-      ));
-    }
+    //   return (
+    //     <TwelveBlockLoading
+    //       filterCategory={true}
+    //       className={classes.container}
+    //     />
+    //   );
+    // }
 
-    return <TwelveBlockLoading className={classes.container} />;
+    console.log('data: ', data);
+
+    return data.map((i) => (
+      <Box
+        key={i.block}
+        className={clsx(classes.container, {
+          [classes.borderActive]: blockSelected === i.block,
+        })}
+        onClick={() => onChangeBlockSelected(i.block)}
+      >
+        {renderBlock(i.imgUrl)}
+      </Box>
+    ));
+
+    // if (blocks.length > 0) {
+    //   return blocks?.map((i, index) => (
+    //     <Box
+    //       key={i.id}
+    //       className={clsx(classes.container, {
+    //         [classes.borderActive]: blockSelected === i.id,
+    //       })}
+    //       onClick={() => onChangeBlockSelected(i.id)}
+    //     >
+    //       {renderBlock(i.imageUrl)}
+    //     </Box>
+    //   ));
+    // }
+
+    // return <TwelveBlockLoading className={classes.container} />;
   }, [
     blockCategories,
     blocks,
