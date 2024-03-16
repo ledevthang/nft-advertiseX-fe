@@ -37,8 +37,8 @@ import { WalletEnum } from 'enums/wallet';
 import RocketIcon from 'icons/RocketIcon';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
-import 'swiper/swiper.min.css';
-import 'swiper/modules/pagination/pagination.min.css';
+// import 'swiper/swiper.min.css';
+// import 'swiper/modules/pagination/pagination.min.css';
 import EthStatsBarIcon from 'icons/EthStatsBarIcon';
 import { clientRoutesEnum } from 'enums/routes';
 
