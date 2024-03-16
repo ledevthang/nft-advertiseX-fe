@@ -88,7 +88,7 @@ export const getNFTById = createSelector(
     (state) => state,
   ],
   (nfts, id, store) => {
-    const nft = nfts.find((nft: any) => nft.id === id);
+    const nft = nfts.find((nft: any) => nft.tokenId === id);
     if (nft) return nft;
     return getNFTDetail(store);
   },

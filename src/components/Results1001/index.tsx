@@ -382,18 +382,15 @@ const Results1001 = ({
         );
       }
       if (dataNFT) {
-        const indexDataNFT =
-          dataNFT.positionOnCategories.filter(
-            (posCat: any) => posCat.name === categoryName,
-          )[0]?.position || 1;
+        const indexDataNFT = dataNFT.position;
         if (dataNFT?.isAd) {
           return (
             <div style={getCellStyle(columnIndex, style)}>
               <SponsorAds
-                key={dataNFT.id}
+                key={dataNFT.tokenId}
                 isExpand={isExpand}
                 isGrid4x4={isGrid4x4}
-                id={dataNFT.id}
+                id={dataNFT.tokenId}
                 isDeadzone={isDeadzone}
                 index={index}
                 dataSponsor={dataNFT}
@@ -405,10 +402,10 @@ const Results1001 = ({
         return (
           <div style={getCellStyle(columnIndex, style)}>
             <DetailNFT
-              key={dataNFT.id}
+              key={dataNFT.tokenId}
               isExpand={isExpand}
               isGrid4x4={isGrid4x4}
-              id={dataNFT.id}
+              id={dataNFT.tokenId}
               isDeadzone={isDeadzone || dataNFT.position > 1001}
               index={indexDataNFT}
               isFilterByCategory={isFilterByCategory}
@@ -418,7 +415,7 @@ const Results1001 = ({
         );
       } else {
         if (!hasMore)
-          return <div style={getCellStyle(columnIndex, stynftle)}></div>;
+          return <div style={getCellStyle(columnIndex, style)}></div>;
         return (
           <div style={getCellStyle(columnIndex, style)}>
             <NFTSkeleton isGrid4x4={isGrid4x4} />
