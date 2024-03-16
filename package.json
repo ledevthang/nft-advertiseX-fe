@@ -43,6 +43,7 @@
     "lodash": "^4.17.21",
     "memoize-one": "^6.0.0",
     "moment": "^2.29.1",
+    "node-polyfill-webpack-plugin": "^3.0.0",
     "o1js": "^0.17.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.1",
@@ -52,7 +53,7 @@
     "react-open-app": "^1.0.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-scrollbars-custom": "^4.0.27",
     "react-swipeable": "^6.2.1",
     "react-type-animation": "^2.1.2",
@@ -70,7 +71,7 @@
     "web3": "^1.7.1"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "craco start",
     "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects",
     "tsc": "tsc --noEmit",
     "prettier": "prettier --write 'src/**/*.{ts,tsx}'",
@@ -102,6 +103,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/prettier": "^2.4.4",
     "@types/react-window": "^1.8.5",

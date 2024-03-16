@@ -18,9 +18,7 @@ import AddIcon from 'icons/AddIcon';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateAppStateAction } from 'store/actions/appActions';
-import {
-  injected,
-} from 'services/wallet/connector';
+import { injected } from 'services/wallet/connector';
 import { updateDialogStateAction } from 'store/actions/dialogActions';
 import { getNotificationsAction } from 'store/actions/notificationActions';
 import { getSummarizeAction } from 'store/actions/summarizeActions';
@@ -37,8 +35,8 @@ import { WalletEnum } from 'enums/wallet';
 import RocketIcon from 'icons/RocketIcon';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
-import 'swiper/swiper.min.css';
-import 'swiper/modules/pagination/pagination.min.css';
+// import 'swiper/swiper.min.css';
+// import 'swiper/modules/pagination/pagination.min.css';
 import EthStatsBarIcon from 'icons/EthStatsBarIcon';
 import { clientRoutesEnum } from 'enums/routes';
 

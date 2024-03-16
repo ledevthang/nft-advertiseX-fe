@@ -2,7 +2,7 @@ import { PublicKey } from 'o1js';
 
 export type TWalletData = {
     userAddress: string;
-    userPubKey: null | PublicKey;
+    userPubKey: null | string;
     accountExists: boolean;
     isConnecting: boolean;
     loadingZkClient: boolean;

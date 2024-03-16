@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { setWalletData } from 'store/actions/auroWalletAction'
-import { PublicKey, fetchAccount } from 'o1js';
+import { PublicKey, fetchAccount, TokenId } from 'o1js';
 import { LocalStorageKey, LocalStorageValue } from 'common/constant';
 
 const useAuroWallet = () => {
@@ -28,7 +28,7 @@ const useAuroWallet = () => {
             const accountExists = res.error == null;
 
             dispatch(setWalletData({
-                userAddress: address, userPubKey: publicKey, accountExists: accountExists, isConnecting: false,
+                userAddress: address, userPubKey: TokenId.toBase58(TokenId.derive(publicKey)), accountExists: accountExists, isConnecting: false,
                 loadingZkClient: false
             }))
 
