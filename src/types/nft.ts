@@ -18,7 +18,7 @@ export interface NFT {
   chain: EChain;
   tokenId: string;
   tokenAddress: string;
-  imageUrl: string;
+  image_url: string;
   price?: number;
   status: nftStatusEnum;
   lastSale: string;
@@ -38,6 +38,7 @@ export interface NFT {
   lastPosition: number;
   position: string;
   shouldEstimate?: boolean;
+  metadata_url: string;
   metadata: string;
   isCloned: boolean;
   isCloneFromUser?: boolean;

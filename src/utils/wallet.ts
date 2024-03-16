@@ -5,18 +5,7 @@ import fromExponential from 'from-exponential';
 import BigNumber from 'bignumber.js';
 
 export const getWalletAddress = (chainId: Number | undefined) => {
-  switch (chainId) {
-    case 250:
-      return process.env.REACT_APP_FTM_CONTRACT_ADDRESS;
-    case 137:
-      return process.env.REACT_APP_POLYGON_MUMBAI_CONTRACT_ADDRESS;
-    case 56:
-      return process.env.REACT_APP_BSC_CONTRACT_ADDRESS;
-    case 43114:
-      return process.env.REACT_APP_AVAX_CONTRACT_ADDRESS;
-    case 1:
-      return process.env.REACT_APP_ETH_CONTRACT_ADDRESS;
-  }
+  return process.env.REACT_APP_ETH_CONTRACT_ADDRESS;
 };
 
 export const getProvider = (library: any) => {

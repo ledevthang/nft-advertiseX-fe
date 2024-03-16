@@ -66,7 +66,7 @@ const NFTContent = ({
         <Box>
           <Box className={classes.collection}>
             <Typography>{data.collection?.name}</Typography>
-            {data.collection?.isVerified && <VerifiedIcon color="#6BC96B" />}
+            {/* {data.collection?.isVerified && <VerifiedIcon color="#6BC96B" />} */}
           </Box>
           <Typography className={classes.nftName}>
             {data.nftName || data.tokenId}

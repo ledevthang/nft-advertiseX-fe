@@ -139,23 +139,7 @@ export const getCoinIdFromCurrencyFilter = (
 ) => {
   let object: any = {};
   converter.forEach((c) => {
-    switch (c.symbol) {
-      case CurrencyUnitEnum.BNB:
-        object[AdminChartFilterByCurrency.BNB] = c.id;
-        break;
-      case CurrencyUnitEnum.ETH:
-        object[AdminChartFilterByCurrency.ETH] = c.id;
-        break;
-      case CurrencyUnitEnum.MATIC:
-        object[AdminChartFilterByCurrency.MATIC] = c.id;
-        break;
-      case CurrencyUnitEnum.FTM:
-        object[AdminChartFilterByCurrency.FANTOM] = c.id;
-        break;
-      case CurrencyUnitEnum.AVAX:
-        object[AdminChartFilterByCurrency.AVAX] = c.id;
-        break;
-    }
+    object[AdminChartFilterByCurrency.ETH] = c.id;
   });
   return object[currency];
 };

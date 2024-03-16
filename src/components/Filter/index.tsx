@@ -16,8 +16,6 @@ import FilterIcon from 'icons/FilterIcon';
 import FormatListBulleted from 'icons/FormatListBulleted';
 import Grid3x3 from 'icons/Grid3x3';
 import Grid4x4 from 'icons/Grid4x4';
-import Polygon from 'icons/Polygon';
-import Solana from 'icons/Solana';
 import { shallowEqual, useSelector } from 'react-redux';
 import {
   getCategories,
@@ -235,9 +233,7 @@ function Filter({
 export default Filter;
 
 const mapIconToChain: any = {
-  polygon: <Polygon />,
   ethereum: <EthIconNew width={16} height={16} />,
-  solana: <Solana width={16} height={16} />,
 };
 
 const useStyles = makeStyles((theme) => ({

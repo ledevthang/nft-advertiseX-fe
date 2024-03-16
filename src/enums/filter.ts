@@ -32,8 +32,4 @@ export enum AdminChartFilterByDate {
 export enum AdminChartFilterByCurrency {
   ALL_CURRENCIES = 'All Currencies',
   ETH = 'ETH',
-  BNB = 'BNB',
-  FANTOM = 'Fantom',
-  MATIC = 'Matic',
-  AVAX = 'AVAX',
 }

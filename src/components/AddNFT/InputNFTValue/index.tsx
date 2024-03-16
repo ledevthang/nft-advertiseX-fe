@@ -19,14 +19,10 @@ import { isStringNumber } from 'utils/validateAddNFT';
 import EthIcon from 'icons/EthIcon';
 import ArrowDownIcon from 'icons/ArrowDownIcon';
 import EthBlackSmallIcon from 'icons/EthBlackSmallIcon';
-import BNBIcon from 'icons/BNBIcon';
 import { CurrencyUnitEnum } from 'enums/addNft';
 import { GetNftEstimateParams } from 'types/addNft';
-import MaticIcon from 'icons/MaticIcon';
-import FtmIcon from 'icons/FtmIcon';
 import { useStyles } from './styles';
 import { InputEstimateParamsEnum } from 'enums/addNft';
-import AVAXIcon from 'icons/AVAXIcon';
 
 export interface IInputNFTValue {
   label: string;
@@ -128,63 +124,6 @@ export default function InputNFTValue(props: IInputNFTValue) {
           <EthBlackSmallIcon width={12} height={11} />
           <span className={classes.unit}>ETH</span>
         </div>
-        <div
-          className={classes.menuItem}
-          onClick={(ev) => handleSelectUnit(ev, CurrencyUnitEnum.BNB)}
-        >
-          <BNBIcon width={12} height={12} />
-          <div className={classes.unitItem}>
-            <span className={classes.unit}>BNB</span>
-            <span className={classes.unitTooltip}>Smart Chain</span>
-          </div>
-        </div>
-        <div
-          className={classes.menuItem}
-          onClick={(ev) => handleSelectUnit(ev, CurrencyUnitEnum.AVAX)}
-        >
-          <AVAXIcon width={12} height={10} />
-          <div className={classes.unitItem}>
-            <span className={classes.unit}>AVAX</span>
-            <span
-              className={classes.unitTooltip}
-              style={{ fontStyle: 'italic' }}
-            >
-              ≈ 0 fee
-            </span>
-          </div>
-        </div>
-        <div
-          className={classes.menuItem}
-          onClick={(ev) => handleSelectUnit(ev, CurrencyUnitEnum.MATIC)}
-        >
-          <MaticIcon width={12} height={10} color={'#8247E5'} />
-          <div className={classes.unitItem}>
-            <span className={classes.unit}>MATIC</span>
-            <span
-              className={classes.unitTooltip}
-              style={{ fontStyle: 'italic' }}
-            >
-              ≈ 0 fee
-            </span>
-          </div>
-        </div>
-        <div
-          className={classes.menuItem}
-          onClick={(ev) => handleSelectUnit(ev, CurrencyUnitEnum.FTM)}
-        >
-          <span className={classes.ftmIcon}>
-            <FtmIcon width={4} height={8} color="#FFF" />
-          </span>
-          <div className={classes.unitItem}>
-            <span className={classes.unit}>FTM</span>
-            <span
-              className={classes.unitTooltip}
-              style={{ fontStyle: 'italic' }}
-            >
-              ≈ 0 fee
-            </span>
-          </div>
-        </div>
       </div>
     ),
     [classes, handleSelectUnit],
@@ -195,30 +134,6 @@ export default function InputNFTValue(props: IInputNFTValue) {
       <>
         {unit === CurrencyUnitEnum.ETH && (
           <EthIcon width={isDesktop ? 12 : 7.42} height={isDesktop ? 16 : 12} />
-        )}
-        {unit === CurrencyUnitEnum.BNB && (
-          <BNBIcon
-            width={isDesktop ? 14.84 : 7.42}
-            height={isDesktop ? 24 : 12}
-          />
-        )}
-        {unit === CurrencyUnitEnum.MATIC && (
-          <MaticIcon
-            width={isDesktop ? 14.84 : 7.42}
-            height={isDesktop ? 24 : 12}
-          />
-        )}
-        {unit === CurrencyUnitEnum.FTM && (
-          <FtmIcon
-            width={isDesktop ? 14.84 : 7.42}
-            height={isDesktop ? 24 : 12}
-          />
-        )}
-        {unit === CurrencyUnitEnum.AVAX && (
-          <AVAXIcon
-            width={isDesktop ? 14.84 : 7.42}
-            height={isDesktop ? 24 : 12}
-          />
         )}
         <span
           className={clsx(

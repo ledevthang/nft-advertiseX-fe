@@ -15,9 +15,6 @@ import {
   useTheme,
 } from '@material-ui/core';
 import clsx from 'clsx';
-import { EChain } from 'enums/filter';
-import Polygon from 'icons/Polygon';
-import Solana from 'icons/Solana';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -241,14 +238,7 @@ function DetailNFT({
   };
 
   const renderChainIcon = useMemo(() => {
-    switch (data.chain) {
-      case EChain.ETHEREUM:
-        return <EthIconNew />;
-      case EChain.POLYGON:
-        return <Polygon />;
-      case EChain.SOLANA:
-        return <Solana width={12.5} height={12.5} />;
-    }
+    return <EthIconNew />;
   }, [data.chain]);
 
   const renderNFTContent = useMemo(() => {

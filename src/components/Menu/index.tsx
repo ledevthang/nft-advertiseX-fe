@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 import clsx from 'clsx';
 import LogoIcon from 'icons/LogoIcon';
-import ScrollingLogoIcon from 'icons/ScrollingLogoIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { getPriceNFTBaseOnDollarAction } from 'store/actions/nftActions';
@@ -142,17 +141,15 @@ const Menu = (props: IMenu) => {
   const logo = useMemo(() => {
     return isDesktop && isScrolling ? (
       <Box className={classes.logo} onClick={onRedirectToHome}>
-        {/* <ScrollingLogoIcon width={216} height={60} /> */}
+        <p style={{ fontSize: '30px', fontWeight: 'bold', margin: '0' }}>NFT AdvertiseX</p>
       </Box>
     ) : isMobile ? (
       <Box className={clsx(classes.logo, classes.logoMobile)}>
-        <Button disableTouchRipple onClick={onRedirectToHome}>
-          <IconLogoSmall height={48} width={37} />
-        </Button>
+        <p style={{ fontSize: '30px', fontWeight: 'bold', margin: '0' }}>NFT AdvertiseX</p>
       </Box>
     ) : (
       <Box className={classes.logo} onClick={onRedirectToHome}>
-        <LogoIcon width={216} height={60} />
+        <p style={{ fontSize: '30px', fontWeight: 'bold', margin: '0' }}>NFT AdvertiseX</p>
       </Box>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

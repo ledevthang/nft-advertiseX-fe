@@ -22,8 +22,6 @@ import { EChain } from 'enums/filter';
 import { numberWithCommas } from 'utils/formatNumber';
 import { convertWeiToEth } from 'common/helper';
 import EthIconNew from 'icons/EthIconNew';
-import Polygon from 'icons/Polygon';
-import Solana from 'icons/Solana';
 import sampleSize from 'lodash/sampleSize';
 import { resetBlockCategoriesAction } from 'store/actions/blockCategoriesAction';
 import { updateFilterAction } from 'store/actions/filterActions';
@@ -107,14 +105,7 @@ export default function DiscoverTop(props: DiscoverTopProps) {
   }, []);
 
   const renderChainIcon = useCallback((value?: string) => {
-    switch (value) {
-      case EChain.ETHEREUM:
-        return <EthIconNew width={12.5} height={12.5} />;
-      case EChain.POLYGON:
-        return <Polygon width={12.5} height={12.5} />;
-      case EChain.SOLANA:
-        return <Solana width={12.5} height={12.5} />;
-    }
+    return <EthIconNew width={12.5} height={12.5} />;
   }, []);
 
   const getRenderInfo = useCallback(
