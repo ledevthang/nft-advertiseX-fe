@@ -39,6 +39,8 @@ const AddNFT = () => {
   const nftPreviewStatus = useSelector(
     sTaskStatus(NFTsActionTypeEnum.GET_NFT_PREVIEW),
   );
+
+  console.log(nftPreviewStatus);
   const messageError = useSelector(
     sTaskStatus(NFTsActionTypeEnum.GET_NFT_PREVIEW),
   )?.error?.data?.message;
