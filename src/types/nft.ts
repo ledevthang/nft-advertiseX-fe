@@ -18,7 +18,7 @@ export interface NFT {
   chain: EChain;
   tokenId: string;
   tokenAddress: string;
-  image_url: string;
+  imageUrl: string;
   price?: number;
   status: nftStatusEnum;
   lastSale: string;

@@ -19,8 +19,6 @@
     "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.179",
     "@types/node": "^16.11.25",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.3",
     "@types/swiper": "^6.0.0",
     "@types/validator": "^13.7.1",
@@ -69,6 +67,10 @@
     "validator": "^13.7.0",
     "web-vitals": "^2.1.4",
     "web3": "^1.7.1"
+  },
+  "resolutions": {
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.14"
   },
   "scripts": {
     "start": "craco start",
