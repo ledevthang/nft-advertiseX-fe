@@ -280,18 +280,18 @@ function Estimate(props: EstimateProps) {
 
       const duration = d * 24 * 3600 + m * 30 * 24 * 3600 + h * 3600;
 
-      // const { id } = await nftService.AddNewNFT({
-      //   chain: EChain.ETHEREUM,
-      //   tokenAddress: nftPreview.tokenAddress,
-      //   tokenId: nftPreview.tokenId,
-      //   marketplace: MarketPlace.OPENSEA,
-      //   duration,
-      // });
+      const { id } = await nftService.AddNewNFT({
+        chain: EChain.ETHEREUM,
+        tokenAddress: nftPreview.tokenAddress,
+        tokenId: nftPreview.tokenId,
+        marketplace: MarketPlace.OPENSEA,
+        duration,
+      });
 
-      // await nftService.AcitveNft({
-      //   id,
-      //   amount: value,
-      // });
+      const data = await nftService.AcitveNft({
+        id,
+        amount: value,
+      });
 
       dispatch(
         updateDialogStateAction({
@@ -301,6 +301,7 @@ function Estimate(props: EstimateProps) {
             imageUrl: nftPreview.imageUrl,
             metadata: nftPreview.metadata,
             isAdded: true,
+            hash: (data as any).data.hash,
           },
         }),
       );

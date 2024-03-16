@@ -52,7 +52,23 @@ export default function TextFieldMessageDialog() {
           <Typography variant="h2" className={classes.title}>
             You listed your NFT successfully!
           </Typography>
+
           <img className={classes.media} src={props.imageUrl} alt="" />
+          <div
+            style={{
+              margin: '20px 0',
+              fontWeight: 'bold',
+              textDecoration: 'none',
+              fontSize: '22px',
+            }}
+          >
+            <a
+              target="_blank"
+              href={`https://minascan.io/berkeley/tx/${props.hash}?type=zk-tx`}
+            >
+              Go to Minascan
+            </a>
+          </div>
         </Box>
         <Box className={clsx(classes.wrapperBtn, 'center-root')}>
           <Button onClick={() => redirectTo('/')}>
