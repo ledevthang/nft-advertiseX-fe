@@ -35,7 +35,7 @@ interface IDetailNFT {
   isHighlight?: boolean;
   blockWipe?: boolean;
   index?: number;
-  id: number;
+  id: any;
   isProfile?: boolean;
   isFilterByCategory?: boolean;
   selectedCategory?: string;
