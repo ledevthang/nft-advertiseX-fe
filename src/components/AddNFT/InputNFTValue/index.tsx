@@ -121,8 +121,13 @@ export default function InputNFTValue(props: IInputNFTValue) {
           className={classes.menuItem}
           onClick={(ev) => handleSelectUnit(ev, CurrencyUnitEnum.ETH)}
         >
-          <EthBlackSmallIcon width={12} height={11} />
-          <span className={classes.unit}>ETH</span>
+          {/* <EthBlackSmallIcon width={12} height={11} /> */}
+          <img
+            src="https://s2.coinmarketcap.com/static/img/coins/64x64/8646.png"
+            width={'12px'}
+            alt=""
+          />
+          <span className={classes.unit}>MINA</span>
         </div>
       </div>
     ),
@@ -133,7 +138,12 @@ export default function InputNFTValue(props: IInputNFTValue) {
     () => (
       <>
         {unit === CurrencyUnitEnum.ETH && (
-          <EthIcon width={isDesktop ? 12 : 7.42} height={isDesktop ? 16 : 12} />
+          <img
+            src="https://s2.coinmarketcap.com/static/img/coins/64x64/8646.png"
+            style={{ borderRadius: '9999px' }}
+            width={'16px'}
+            alt=""
+          />
         )}
         <span
           className={clsx(
@@ -141,7 +151,7 @@ export default function InputNFTValue(props: IInputNFTValue) {
             { [classes.unitTabletAndMoblie]: !isDesktop },
           )}
         >
-          {unit}
+          MINA
         </span>
       </>
     ),
